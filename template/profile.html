@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        ul li strong {
+            color: #333;
+            margin-right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .signout-link {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signout-link:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+        <nav>
+            <a href="/home">Home</a>
+            <!-- Sign out Link -->
+            <a href="#" class="signout-link" id="logout-link">Sign out</a>
+        </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>Hello, {{ username }}!</h2>
+    <ul>
+        <li><strong>Username:</strong> {{ username }}</li>
+        <li><strong>Email:</strong> {{ email }}</li>
+        <li><strong>Date Joined:</strong> {{ date_joined }}</li>
+        <li><strong>Last Updated:</strong> {{ last_login }}</li>
+    </ul>
+
+    <!-- Hidden Form for Logout -->
+    <form method="POST" id="logout-form" action="{% url 'logout' %}" style="display: none;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <footer>
+        <a href="/home">Back to Dashboard</a>
+    </footer>
+  </main>
+
+  <script>
+      // Handle the logout link click event
+      document.getElementById("logout-link").addEventListener("click", function(e) {
+          e.preventDefault();  // Prevent default link behavior
+
+          // Submit the hidden form to log out
+          document.getElementById("logout-form").submit();
+      });
+  </script>
+
+</body>
+</html>
