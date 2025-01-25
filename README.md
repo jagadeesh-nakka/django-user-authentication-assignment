@@ -85,4 +85,4 @@ The project will be accessible at `http://127.0.0.1:8000/` in your browser.
 
 ### 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/django-user-authentication-assignment.git
+git clone https://github.com/jagadeesh-nakka/django-user-authentication-assignment.git
