@@ -1,6 +1,7 @@
 # Django User Authentication Assignment
 
 This project is a Django-based application that implements user authentication features, such as login, signup, password reset, and profile management. It includes the following pages:
+
 - Login
 - Signup
 - Forgot Password
@@ -27,28 +28,61 @@ This project is a Django-based application that implements user authentication f
 
 - Python 3.8+
 - Django 3.x+
+- MySQL 5.x+
 - An SMTP email service (for sending password reset emails, configure email settings in Django).
+
+## Database Configuration
+
+This project uses **MySQL** as the database. To set up the database, follow these steps:
+
+1. **Install MySQL** on your machine if it's not already installed. You can download it from [MySQL's official website](https://dev.mysql.com/downloads/installer/).
+2. **Install MySQL Client** for Django:
+    ```bash
+    pip install mysqlclient
+    ```
+    If you face issues, you can use `pymysql` as an alternative:
+    ```bash
+    pip install pymysql
+    ```
+    And add the following to the top of your `settings.py` file:
+    ```python
+    import pymysql
+    pymysql.install_as_MySQLdb()
+    ```
+
+3. **Update `settings.py`**: In your Django project, go to the `settings.py` file and configure the database settings:
+    ```python
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'web',  # Your database name
+            'USER': 'root',  # Your MySQL username
+            'PASSWORD': 'root',  # Your MySQL password
+            'HOST': 'localhost',  # If you're using a local MySQL server
+            'PORT': '3306',  # Default MySQL port
+        }
+    }
+    ```
+
+4. **Create the MySQL Database**: Before running migrations, ensure the database exists. You can create it from the MySQL shell:
+    ```sql
+    CREATE DATABASE web;
+    ```
+
+5. **Run Migrations**: Apply the migrations to create necessary tables in the database:
+    ```bash
+    python manage.py migrate
+    ```
+
+6. **Run the Development Server**:
+    ```bash
+    python manage.py runserver
+    ```
+
+The project will be accessible at `http://127.0.0.1:8000/` in your browser.
 
 ## Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone ""
-
-
-2. **Navigate to the project directory:**
-   ```bash
-     -cd django-user-authentication-assignment
-
-
- 3. **Install dependencies:**
-   ```bash
-   -pip install -r requirements.txt   
-
-
- 4. **Run the development server:**
-   
-    -python manage.py runserver
-
-
-
+### 1. Clone the repository:
+```bash
+git clone https://github.com/your-username/django-user-authentication-assignment.git
